@@ -11,7 +11,6 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 public class CDDto {
 
     private Long id;
@@ -24,5 +23,18 @@ public class CDDto {
 
     private String genero;
 
-    private float precio;
+    private double precio;
+
+    private Artista artista;
+
+
+    // Constructor
+    public CDDto(Long id, String nombre, LocalDateTime lanzamiento, int duracion, String genero, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.lanzamiento = lanzamiento;
+        this.duracion = duracion;
+        this.genero = genero;
+        this.precio = precio;
+    }
 }

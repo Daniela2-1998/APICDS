@@ -34,14 +34,18 @@ public class CD {
 
     private String genero;
 
-    private float precio;
+    private double precio;
+
+    @ManyToOne
+    @JoinColumn(name = "artista_id")
+    private Artista artista;
 
 
     // CONSTRUCTORES
     public CD() {
     }
 
-    public CD(String nombre, LocalDateTime lanzamiento, int duracion, String genero, float precio) {
+    public CD(String nombre, LocalDateTime lanzamiento, int duracion, String genero, double precio) {
         this.nombre = nombre;
         this.lanzamiento = lanzamiento;
         this.duracion = duracion;
@@ -49,13 +53,23 @@ public class CD {
         this.precio = precio;
     }
 
-    public CD(Long id, String nombre, LocalDateTime lanzamiento, int duracion, String genero, float precio) {
+    public CD(Long id, String nombre, LocalDateTime lanzamiento, int duracion, String genero, double precio) {
         this.id = id;
         this.nombre = nombre;
         this.lanzamiento = lanzamiento;
         this.duracion = duracion;
         this.genero = genero;
         this.precio = precio;
+    }
+
+    public CD(Long id, String nombre, LocalDateTime lanzamiento, int duracion, String genero, double precio, Artista artista) {
+        this.id = id;
+        this.nombre = nombre;
+        this.lanzamiento = lanzamiento;
+        this.duracion = duracion;
+        this.genero = genero;
+        this.precio = precio;
+        this.artista = artista;
     }
 
     // GETTERS Y SETTERS
@@ -99,11 +113,19 @@ public class CD {
         this.genero = genero;
     }
 
-    public float getPrecio() {
+    public  double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public Artista getArtista() {
+        return artista;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
     }
 }
