@@ -9,7 +9,7 @@ import tucd.APICDS.model.Dolar;
 @Configuration
 public class CDConfiguration {
 
-    @Value("${dolarapi.url")
+    @Value("${dolarapi.url}")
     private String URL_Dolar;
 
     @Bean

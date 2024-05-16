@@ -12,7 +12,10 @@ import tucd.APICDS.repository.ArtistaRepository;
 import tucd.APICDS.repository.CDRepository;
 import tucd.APICDS.util.CDUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,12 +38,21 @@ public class CDService {
         return dolar.getPromedio();
     }
 
+    private double getDolarCompra() {
+        Dolar dolar = cdConfiguration.fetchDolar();
+        return dolar.getCompra();
+    }
+
+    public List<Dolar> getAllDolars(){
+        return List.of(cdConfiguration.fetchAllDolars());
+    }
+
     // Retornar todos los registros.
-    public List<CDDto> findAll(){
-        List<CD> listaCds = cdRepository.findAll();
-        return listaCds.stream()
-                .map(cd -> cdUtils.cdMapper(cd, getDolar()))
-                .collect(Collectors.toList());
+    public List<CD> findAllCDS(){
+        double dolar = getDolarCompra();
+        List<CD> cds = cdRepository.findAll();
+        return cds;
+        //return cdUtils.cdMapper(cds, dolar);
     }
 
     // Crear registro.
@@ -52,5 +64,33 @@ public class CDService {
         return cdRepository.save(cd);
 
     }
+
+    public Optional<CD> buscarCDPorId(Long id){
+        return cdRepository.findById(id);
+    }
+
+    public void borrarCDPorId(Long id){
+        cdRepository.deleteById(id);
+    }
+
+
+    public Optional<CD> actualizarCD(CD cd){
+        cdRepository.save(cd);
+        return cdRepository.findById(cd.getId());
+    }
+
+    public List<CD> getOfertas(Integer precioOferta){
+        List<CD> listaCDs = cdRepository.findAll();
+        return cdUtils.encontrarOfertas(listaCDs, precioOferta);
+    }
+
+    public List<CD> getByGenero(String genero){
+        return cdRepository.findByGenero(genero);
+    }
+
+    public List<CD> getByLanzamiento(LocalDate lanzamiento){
+        return cdRepository.findByLanzamiento(lanzamiento);
+    }
+
 
 }

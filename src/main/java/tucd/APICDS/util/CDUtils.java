@@ -21,14 +21,8 @@ public class CDUtils {
                 .collect(Collectors.toList());
     }
 
-    // Mapeo de CDS.
-    public CDDto cdMapper(CD cd, double precio){
-        return new CDDto(cd.getId(), cd.getNombre(), cd.getLanzamiento(),
-                cd.getDuracion(), cd.getGenero(), cd.getPrecio());
-    }
 
-    //Creacion de listado de FlightDto con stream
-    public List<CDDto> flightMapper(List<CD> cds, double precio) {
+    public List<CDDto> cdMapper(List<CD> cds, double precio) {
         return cds.stream()
                 .map(c -> new CDDto(
                         c.getId(),
@@ -36,7 +30,7 @@ public class CDUtils {
                         c.getLanzamiento(),
                         c.getDuracion(),
                         c.getGenero(),
-                        c.getPrecio() * precio))
+                        c.getPrecio() / precio))
                 .collect(Collectors.toList());
     }
 
