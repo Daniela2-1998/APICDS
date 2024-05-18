@@ -13,3 +13,4 @@ Se trata de una API REST de CDS que permite consultar todos los registros, hacer
 Es necesario descargar también el otro microservicio y el server de los siguientes enlaces:
 * https://github.com/Daniela2-1998/eurekaServer
 * https://github.com/Daniela2-1998/ticketCompra
+Por otro lado, y como opción alternativa, se puede acceder al siguiente repositorio que contiene el servidor y los microservicios en un mismo lugar: https://github.com/Daniela2-1998/Microservicios-CODEKI
